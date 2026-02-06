@@ -1,0 +1,21 @@
+{
+  "name": "web-app-maker",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "mkdir -p dist && bun build ./index.ts --outfile ./dist/webapp --compile && sudo cp dist/webapp /usr/local/bin/webapp && echo '🚀 Installed webapp to /usr/local/bin/webapp'",
+    "dev": "bun --watch run ./index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "axios": "^1.13.4",
+    "enquirer": "^2.4.1",
+    "prompts": "^2.4.2"
+  }
+}
