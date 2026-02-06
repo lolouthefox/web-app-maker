@@ -40,12 +40,14 @@ async function createWebApp() {
   const url = await new Input({ name: "url", message: "App URL:" }).run();
   const iconUrl = await new Input({ name: "icon", message: "Icon URL (PNG recommended):" }).run();
 
-  const iconPath = await downloadIcon(iconUrl, name);
+  let iconPath = undefined;
+  if (iconUrl) {
+    iconPath = await downloadIcon(iconUrl, name);
+  }
 
   const desktopFile = `[Desktop Entry]
 Name=${name}
-Exec=chromium-browser --app=${url}
-Icon=${iconPath}
+Exec=chromium-browser --app=${url}${iconPath ? "\nIcon=" + iconPath : ""}
 Terminal=false
 Type=Application
 Categories=Utility;
